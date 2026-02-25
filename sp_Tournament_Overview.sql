@@ -64,7 +64,7 @@ BEGIN
                 
                 -- Foul and Period metrics
                 COUNT(CASE WHEN event_type_id = 22 THEN 1 END) AS Total_Fouls,
-                COUNT(DISTINCT CASE WHEN period = 3 THEN e.match_id END) AS Extra_Time_Matches,
+                COUNT(DISTINCT CASE WHEN period IN (3,4) THEN e.match_id END) AS Extra_Time_Matches,
                 COUNT(DISTINCT CASE WHEN period = 5 THEN e.match_id END) AS Penalty_Shootouts
             FROM Fact_Events e 
             JOIN Dim_Match m ON e.match_id = m.match_id 
